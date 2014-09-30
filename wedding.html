@@ -506,7 +506,7 @@
     <p>Use a spacebar or arrow keys to navigate</p>
 </div>
 
-<embed src="music/MarryYou.mp3" width="180" height="90" loop="false" autostart="false" hidden="true" />
+<embed src="music/MarryYou.mp3" width="180" height="90" loop="true" autostart="true" hidden="true" />
 
 <script>
 if ("ontouchstart" in document.documentElement) { 
@@ -534,13 +534,19 @@ if ("ontouchstart" in document.documentElement) {
 <script>impress().init();</script>
 -->
 <script>
+    
+
 	var impress = impress();
 	impress.init();
 
+    function nextSlide() {
+        impress.goto(Math.floor((Math.random() * 96)));
+    }
+    
 	document.addEventListener('impress:stepenter', function(e){
 		if (typeof timing !== 'undefined') clearInterval(timing);
 		var duration = (e.target.getAttribute('data-transition-duration') ? e.target.getAttribute('data-transition-duration') : 2000); // use the set duration or fallback to 2000ms
-		timing = setInterval(impress.next, duration);
+		timing = setInterval(nextSlide, duration);
 	});
 </script>
 
